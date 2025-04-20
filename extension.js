@@ -5,14 +5,19 @@ let currentIndex = 0;
 function generateText(editor) {
   if (!isWriting || currentIndex >= templateText.length) return;
 
-  const char = templateText[currentIndex];
+  let char = templateText[currentIndex];
   let delay = 200;
 
-  if (char === " ") {
+  // Если это 4 пробела подряд
+  if (templateText.slice(currentIndex, currentIndex + 4) === "    ") {
+    char = "    "; 
+    delay = 100;
+  } else if (char === " ") {
     delay = 400;
   } else if (char === "\n") {
     delay = 700;
   }
+
   timer = setTimeout(() => {
     const position = editor.selection.end;
 
@@ -21,7 +26,7 @@ function generateText(editor) {
         editBuilder.insert(position, char);
       })
       .then(() => {
-        currentIndex++;
+        currentIndex += char.length; // сдвигаемся сразу на 4, если вставили 4 пробела
         generateText(editor);
       });
   }, delay);
