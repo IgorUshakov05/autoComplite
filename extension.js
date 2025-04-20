@@ -5,19 +5,28 @@ let currentIndex = 0;
 function generateText(editor) {
   if (!isWriting || currentIndex >= templateText.length) return;
 
+  const char = templateText[currentIndex];
+  let delay = 200;
+
+  if (char === " ") {
+    delay = 400;
+  } else if (char === "\n") {
+    delay = 700;
+  }
   timer = setTimeout(() => {
     const position = editor.selection.end;
 
     editor
       .edit((editBuilder) => {
-        editBuilder.insert(position, templateText[currentIndex]);
+        editBuilder.insert(position, char);
       })
       .then(() => {
         currentIndex++;
         generateText(editor);
       });
-  }, 100);
+  }, delay);
 }
+
 const templateText = `import sys; 
 from PySide6.QtWidgets import QApplication,QMainWindow,QPushButton,QVBoxLayout,QWidget,QLineEdit,QTableWidget,QTableWidgetItem,QComboBox,QMessageBox,QHBoxLayout,QDialog,QFormLayout,QDialogButtonBox,QDateEdit,QLabel; 
 from PySide6.QtCore import Qt,QDate; 
