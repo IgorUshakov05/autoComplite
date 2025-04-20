@@ -7,16 +7,21 @@ function generateText(editor) {
 
   let char = templateText[currentIndex];
   let delay = 200;
+  let baseDelay = 200;
 
-  // Если это 4 пробела подряд
   if (templateText.slice(currentIndex, currentIndex + 4) === "    ") {
-    char = "    "; 
-    delay = 100;
+    char = "    ";
+    baseDelay = 100;
   } else if (char === " ") {
-    delay = 400;
+    baseDelay = 400;
   } else if (char === "\n") {
-    delay = 700;
+    baseDelay = 700;
   }
+
+  // Добавляем случайное отклонение ±100–150 мс
+  const variation = Math.floor(Math.random() * 100) + 50; // от 50 до 149
+  const sign = Math.random() < 0.5 ? -1 : 1; // плюс или минус
+  delay = baseDelay + variation * sign;
 
   timer = setTimeout(() => {
     const position = editor.selection.end;

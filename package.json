@@ -2,7 +2,7 @@
   "name": "python-postgres",
   "displayName": "python-postgres",
   "description": "Python-Postgres — это расширение для разработчиков, работающих с Python и PostgreSQL, которое помогает легко интегрировать базу данных PostgreSQL в приложения на Python. Оно предоставляет инструменты для упрощения работы с запросами, подключением и манипуляцией данными в PostgreSQL, а также включает функции для оптимизации взаимодействия между Python и базой данных.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "publisher": "WebHuntru",
   "icon": "logo.png",
   "repository": {
